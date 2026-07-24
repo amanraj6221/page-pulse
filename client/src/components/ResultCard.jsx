@@ -15,7 +15,7 @@ function ResultCard({ result }) {
   return (
     <div className="results">
 
-      <h2>📊 Website Analysis</h2>
+      <h2> Website Analysis</h2>
 
       <div className="grid">
 

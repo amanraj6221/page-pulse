@@ -34,7 +34,7 @@ function UrlForm({ onAnalyze, loading }) {
         type="submit"
         disabled={loading}
       >
-        {loading ? "Analyzing..." : "🚀 Analyze Website"}
+        {loading ? "Analyzing..." : " Analyze Website"}
       </button>
 
     </form>

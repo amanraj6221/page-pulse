@@ -32,7 +32,7 @@ function Home() {
       <div className="glass-card">
 
         <div className="hero">
-          <h1>🚀 Page Pulse</h1>
+          <h1> Page Pulse</h1>
 
           <p>
             Analyze Website Performance, SEO & Accessibility
