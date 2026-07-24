@@ -2,6 +2,7 @@
 import { useState } from "react";
 import UrlForm from "../components/UrlForm";
 import ResultCard from "../components/ResultCard";
+import LoadingSpinner from "../components/LoadingSpinner";
 import { analyzeWebsite } from "../services/api";
 
 function Home() {
@@ -11,14 +12,15 @@ function Home() {
   const handleAnalyze = async (url) => {
     try {
       setLoading(true);
+      setResult(null);
 
-      const data = await analyzeWebsite(url);
+      const response = await analyzeWebsite(url);
 
-      setResult(data);
-    } catch (error) {
+      setResult(response);
+    } catch (err) {
       alert(
-        error.response?.data?.message ||
-          "Something went wrong. Please try again."
+        err.response?.data?.message ||
+        "Unable to analyze this website."
       );
     } finally {
       setLoading(false);
@@ -26,25 +28,47 @@ function Home() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "800px",
-        margin: "50px auto",
-        padding: "20px",
-      }}
-    >
-      <h1>Page Pulse</h1>
+    <div className="container">
+      <div className="glass-card">
 
-      <p>Analyze any website instantly.</p>
+        <div className="hero">
+          <h1>🚀 Page Pulse</h1>
 
-      <UrlForm
-        onAnalyze={handleAnalyze}
-        loading={loading}
-      />
+          <p>
+            Analyze Website Performance, SEO & Accessibility
+            in Seconds.
+          </p>
+        </div>
 
-      <ResultCard result={result} />
+        <UrlForm
+          onAnalyze={handleAnalyze}
+          loading={loading}
+        />
+
+        {loading && <LoadingSpinner />}
+
+        {!loading && result && (
+          <ResultCard result={result} />
+        )}
+
+        <footer className="footer">
+          <p>
+            Built for <strong>Digital Heroes Training Task</strong>
+          </p>
+
+          <a
+            href="https://digitalheroesco.com"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Visit Digital Heroes →
+          </a>
+        </footer>
+
+      </div>
     </div>
   );
 }
 
 export default Home;
+

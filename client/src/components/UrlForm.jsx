@@ -1,11 +1,11 @@
 
 import { useState } from "react";
 
-
 function UrlForm({ onAnalyze, loading }) {
+
   const [url, setUrl] = useState("");
 
-  const handleSubmit = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
 
     if (!url.trim()) {
@@ -17,7 +17,11 @@ function UrlForm({ onAnalyze, loading }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="url-form"
+      onSubmit={submitHandler}
+    >
+
       <input
         type="url"
         placeholder="https://example.com"
@@ -26,12 +30,15 @@ function UrlForm({ onAnalyze, loading }) {
         required
       />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Analyzing..." : "Analyze"}
+      <button
+        type="submit"
+        disabled={loading}
+      >
+        {loading ? "Analyzing..." : "🚀 Analyze Website"}
       </button>
+
     </form>
   );
 }
 
 export default UrlForm;
-

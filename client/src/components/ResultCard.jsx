@@ -4,23 +4,42 @@ function ResultCard({ result }) {
 
   const data = result.data;
 
+  const cards = [
+    { title: "HTTP Status", value: data.status },
+    { title: "Response Time", value: data.responseTime },
+    { title: "H1 Tags", value: data.h1Count },
+    { title: "Images Missing Alt", value: data.imagesMissingAlt },
+    { title: "Word Count", value: data.wordCount },
+  ];
+
   return (
-    <div style={{ marginTop: "20px", border: "1px solid #ddd", padding: "20px", borderRadius: "8px" }}>
-      <h2>Analysis Result</h2>
+    <div className="results">
 
-      <p><strong>HTTP Status:</strong> {data.status}</p>
+      <h2>📊 Website Analysis</h2>
 
-      <p><strong>Response Time:</strong> {data.responseTime}</p>
+      <div className="grid">
 
-      <p><strong>Title:</strong> {data.title}</p>
+        {cards.map((card) => (
+          <div className="metric-card" key={card.title}>
+            <span>{card.title}</span>
+            <h3>{card.value}</h3>
+          </div>
+        ))}
 
-      <p><strong>Meta Description:</strong> {data.metaDescription}</p>
+      </div>
 
-      <p><strong>H1 Count:</strong> {data.h1Count}</p>
+      <div className="meta-card">
 
-      <p><strong>Images Missing Alt:</strong> {data.imagesMissingAlt}</p>
+        <h3>📄 Page Title</h3>
 
-      <p><strong>Word Count:</strong> {data.wordCount}</p>
+        <p>{data.title || "Not Available"}</p>
+
+        <h3>📝 Meta Description</h3>
+
+        <p>{data.metaDescription || "Not Available"}</p>
+
+      </div>
+
     </div>
   );
 }
